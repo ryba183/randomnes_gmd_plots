@@ -8,8 +8,8 @@ time_stop = [9600]
 time_start = [1800]
 level_start = 500
 level_end = 5000
-outfile_to_plot = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Wykresy/'
-main_path = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Dane'
+outfile_to_plot = ''#provide path to save the figure
+main_path = ''#provide path to DATA folder
 text_letters = ['(a)', '(b)', '(c)', '(d)', '(e)', '(f)', '(g)', '(h)', '(i)', '(j)', '(k)', '(l)', '(m)', '(n)', '(o)','(p)','(r)', '(s)']
 linestyle = ['-', '--', '-', '--','-', '--', '-', '--']
 SDs_HR = ['HR_SD10', 'GA17_HR_SD10','HR_SD100', 'GA17_HR_SD100','HR_SD1000', 'GA17_HR_SD1000', ]
@@ -35,7 +35,6 @@ for i, (SD_D, SD_HR) in enumerate(zip(SDs_D, SDs_HR)):
     # Setting proper bins
     number_of_bins = 18
     bins = (np.arange(0, 2 + 2 / number_of_bins, 2 / number_of_bins)).tolist()
-
 
     # Histogram data preparation
     bin_widths = np.diff(bins)

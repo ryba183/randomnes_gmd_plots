@@ -109,14 +109,14 @@ def multiplot_data(parent_directories, subfolders, time_moments, names, outfile)
                 hspace=0.15)
     fig.savefig(outfile + 'Fig_8.pdf', dpi=300)
     plt.close(fig)
-path_to_old = '/home/piotr-pc/response/to_share/Cumulus_Congestus'
-parent_directory = [f'{path_to_old}/DATA/D/CSV',
-                    f'{path_to_old}/DATA/LR/CSV',
-                    f'{path_to_old}/DATA/MR/CSV',
-                    f'{path_to_old}/DATA/HR/CSV']
+path = ""#provide path to DATA folder
+parent_directory = [f'{path}/...D/CSV',
+                    f'{path}/...LR/CSV',
+                    f'{path}/...MR/CSV',
+                    f'{path}/...HR/CSV']
 subfolders = ["SD10", "SD50", "SD100", "SD1000", "SD10000", "SD40000"]
 time_moments = [9600]
 abreviations = ["D_nc", "LR_nc", "MR_nc", "HR_nc"]
-outfile_to_plot = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Wykresy/'
+outfile_to_plot = ''#provide path to save the figure
 
 multiplot_data(parent_directory, subfolders, [9600], abreviations, outfile_to_plot)

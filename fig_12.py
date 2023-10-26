@@ -6,14 +6,13 @@ plt.rcParams.update({'font.size': 24})
 time_start = [6960, 7320, 7680, 8040]
 level_start = 500
 level_end = 5000
-outfile_to_plot = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Wykresy/'
-path = '/home/piotr-pc/response/to_share/Cumulus_Congestus/DATA/HR/Fig_12_data'
+outfile_to_plot = ''#provide path to save the figure
+path = '/HR/Fig_12_data'#provide path to DATA folder
 text_letters = ['(a)', '(b)', '(c)', '(d)', '(e)', '(f)', '(g)', '(h)', '(i)', '(j)', '(k)', '(l)', '(m)', '(n)', '(o)','(p)','(r)', '(s)']
 
 SDs = [10, 50, 100, 1000, 10000, 40000, 100000]
 # Number of colors you need
 num_colors = len(SDs)  # You can change this to your desired number
-
 # Create a list of colors from the "gnuplot" colormap
 colors = [plt.cm.gnuplot(i / num_colors) for i in range(num_colors)]
 fig, axes = plt.subplots(1, 4, figsize=(25, 15), sharey=True)

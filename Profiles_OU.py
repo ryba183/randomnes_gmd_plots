@@ -87,9 +87,6 @@ def multiplot_data(parent_directories, subfolders, subfolders2,time_moments, nam
                 axs[0,2].set_xlim((0, 0.41))
                 axs[1,2].set_xlim((0, 0.41))
 
-                # axs[0,3].plot(rd_geq_08um_conc_avg_data, pos_avg_data,  linestyle=linestyles[j], linewidth=l_width,color=colors[j])
-                # axs[0,3].set_ylim((0, 5000))
-
                 axs[0,3].plot(rd_lt_08um_conc_avg_data, pos_avg_data,  linestyle=linestyles[j], linewidth=l_width,color=colors[j])
                 axs[1,3].plot(rd_lt_08um_conc_avg_data2, pos_avg_data2,  linestyle=linestyles[j], linewidth=l_width,color=colors[j])
                 axs[0,3].set_xlim((50, 150))
@@ -104,7 +101,6 @@ def multiplot_data(parent_directories, subfolders, subfolders2,time_moments, nam
     axs[1,0].set_xlabel(r"droplet concentration [cm$^{-3}$]",fontsize=f_size)
     axs[1,1].set_xlabel(r"mean radius [$\mu$m]",fontsize=f_size)
     axs[1,2].set_xlabel("relative dispersion [1]",fontsize=f_size)
-    # axs[1,3].set_xlabel(r"r > 0.8 $\mu m$ concentration [cm$^{-3}$]",fontsize=f_size)
     axs[1,3].set_xlabel(r"aerosol concentration [cm$^{-3}$]",fontsize=f_size)
     axs[0,0].legend(loc='upper center', bbox_to_anchor=(2, 1.15), ncol=3, fancybox=False, shadow=False, frameon=False, fontsize=28)
 
@@ -113,26 +109,22 @@ def multiplot_data(parent_directories, subfolders, subfolders2,time_moments, nam
     axs[0, 0].text(-0.25, 0.62, "HR", transform=axs[0, 0].transAxes, fontsize=25, fontweight='bold', va='center', ha='center')
     axs[1, 0].text(-0.25, 0.62, "D", transform=axs[1, 0].transAxes, fontsize=25, fontweight='bold', va='center', ha='center')
 
-    # axs[0,2].set_ylabel("height [m]",fontsize=f_size)
-    # axs[0,3].set_ylabel("height [m]",fontsize=f_size)
-    # axs[0,4].set_ylabel("height [m]",fontsize=f_size)
     plt.subplots_adjust(top=0.95)  # Adjust the top spacing to make room for the title
-
     plt.subplots_adjust(left=0.08,
                 bottom=0.05,
                 right=0.98,
                 top=0.92,
                 wspace=0.1,
                 hspace=0.07)
-    fig.savefig(outfile + 'Subplot_distance_All.pdf', dpi=300)
+    fig.savefig(outfile + 'Profiles_OU.pdf', dpi=300)
     plt.close(fig)
-main_path = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Dane/'
+main_path = ''#provide path to DATA folder
 parent_directory = [f'{main_path}/CSV/']
 
 subfolders = ['HR/HR/SD10','HR/GA17_HR/SD10','HR/HR/SD100','HR/GA17_HR/SD100','HR/HR/SD1000','HR/GA17_HR/SD1000']
 subfolders2 = ['D/D/SD10','D/GA17_D/SD10','D/D/SD100','D/GA17_D/SD100','D/D/SD1000','D/GA17_D/SD1000']
 abreviations = ["10", "100", "1000"]
 time_moments = [9600]
-outfile_to_plot = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Wykresy/'
+outfile_to_plot = ''#provide path to save the figure
 
 multiplot_data(parent_directory, subfolders, subfolders2, [9600], abreviations, outfile_to_plot)

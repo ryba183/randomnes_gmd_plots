@@ -5,7 +5,6 @@ from scipy.stats.distributions import chi2
 from sys import argv
 import glob, os
 
-
 def prepare_data(path, save_name):
 
     def read_my_array(file_obj):
@@ -67,71 +66,70 @@ def prepare_data(path, save_name):
     np.save(outfile+'std_error_up_'+save_name, std_error_upp)
     np.save(outfile+'std_error_down_'+save_name, std_error_downn)
 
-
-paths = ['/home/piotr-pc/response/TEST_PIOTRA/Dane/D_ta/time_series/SD10/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/D_ta/time_series/SD50/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/D_ta/time_series/SD100/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/D_ta/time_series/SD1000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/D_ta/time_series/SD10000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/D_ta/time_series/SD40000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/D_ta/time_series/SD100000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/LR_ta/time_series/SD10/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/LR_ta/time_series/SD50/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/LR_ta/time_series/SD100/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/LR_ta/time_series/SD1000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/LR_ta/time_series/SD10000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/LR_ta/time_series/SD40000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/LR_ta/time_series/SD100000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/MR_ta/time_series/SD10/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/MR_ta/time_series/SD50/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/MR_ta/time_series/SD100/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/MR_ta/time_series/SD1000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/MR_ta/time_series/SD10000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/MR_ta/time_series/SD40000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/MR_ta/time_series/SD100000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/HR_ta/time_series/SD10/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/HR_ta/time_series/SD50/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/HR_ta/time_series/SD100/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/HR_ta/time_series/SD1000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/HR_ta/time_series/SD5000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/HR_ta/time_series/SD10000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/HR_ta/time_series/SD40000/',
-        '/home/piotr-pc/response/TEST_PIOTRA/Dane/HR_ta/time_series/SD100000/']
-outfile = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Dane/time_series/precip_data/GA17_old/'
+master_path = ''#provide path to DATA folder
+paths = [f'{master_path}/D_ta/time_series/SD10/',
+        f'{master_path}/D_ta/time_series/SD50/',
+        f'{master_path}/D_ta/time_series/SD100/',
+        f'{master_path}/D_ta/time_series/SD1000/',
+        f'{master_path}/D_ta/time_series/SD10000/',
+        f'{master_path}/D_ta/time_series/SD40000/',
+        f'{master_path}/D_ta/time_series/SD100000/',
+        f'{master_path}/LR_ta/time_series/SD10/',
+        f'{master_path}/LR_ta/time_series/SD50/',
+        f'{master_path}/LR_ta/time_series/SD100/',
+        f'{master_path}/LR_ta/time_series/SD1000/',
+        f'{master_path}/LR_ta/time_series/SD10000/',
+        f'{master_path}/LR_ta/time_series/SD40000/',
+        f'{master_path}/LR_ta/time_series/SD100000/',
+        f'{master_path}/MR_ta/time_series/SD10/',
+        f'{master_path}/MR_ta/time_series/SD50/',
+        f'{master_path}/MR_ta/time_series/SD100/',
+        f'{master_path}/MR_ta/time_series/SD1000/',
+        f'{master_path}/MR_ta/time_series/SD10000/',
+        f'{master_path}/MR_ta/time_series/SD40000/',
+        f'{master_path}/MR_ta/time_series/SD100000/',
+        f'{master_path}/HR_ta/time_series/SD10/',
+        f'{master_path}/HR_ta/time_series/SD50/',
+        f'{master_path}/HR_ta/time_series/SD100/',
+        f'{master_path}/HR_ta/time_series/SD1000/',
+        f'{master_path}/HR_ta/time_series/SD5000/',
+        f'{master_path}/HR_ta/time_series/SD10000/',
+        f'{master_path}/HR_ta/time_series/SD40000/',
+        f'{master_path}/HR_ta/time_series/SD100000/']
+outfile = ''# provide path to save the data
 outfile_name = 'GA17'
 # prepare_data(paths, outfile_name)
 
-path_to_old = '/home/piotr-pc/response/to_share/Cumulus_Congestus'
-paths = [f'{path_to_old}/DATA/D/constant_SD_init/SD10/',
-         f'{path_to_old}/DATA/D/constant_SD_init/SD50/',
-         f'{path_to_old}/DATA/D/constant_SD_init/SD100/',
-         f'{path_to_old}/DATA/D/constant_SD_init/SD1000/',
-         f'{path_to_old}/DATA/D/constant_SD_init/SD10000/',
-         f'{path_to_old}/DATA/D/constant_SD_init/SD40000/',
-         f'{path_to_old}/DATA/D/constant_SD_init/SD100000/',
-         f'{path_to_old}/DATA/LR/constant_SD_init/SD10/',
-         f'{path_to_old}/DATA/LR/constant_SD_init/SD50/',
-         f'{path_to_old}/DATA/LR/constant_SD_init/SD100/',
-         f'{path_to_old}/DATA/LR/constant_SD_init/SD1000/',
-         f'{path_to_old}/DATA/LR/constant_SD_init/SD10000/',
-         f'{path_to_old}/DATA/LR/constant_SD_init/SD40000/',
-         f'{path_to_old}/DATA/LR/constant_SD_init/SD100000/',
-         f'{path_to_old}/DATA/MR/constant_SD_init/SD10/',
-         f'{path_to_old}/DATA/MR/constant_SD_init/SD50/',
-         f'{path_to_old}/DATA/MR/constant_SD_init/SD100/',
-         f'{path_to_old}/DATA/MR/constant_SD_init/SD1000/',
-         f'{path_to_old}/DATA/MR/constant_SD_init/SD10000/',
-         f'{path_to_old}/DATA/MR/constant_SD_init/SD40000/',
-         f'{path_to_old}/DATA/MR/constant_SD_init/SD100000/',
-         f'{path_to_old}/DATA/HR/constant_SD_init/SD10/',
-         f'{path_to_old}/DATA/HR/constant_SD_init/SD50/',
-         f'{path_to_old}/DATA/HR/constant_SD_init/SD100/',
-         f'{path_to_old}/DATA/HR/constant_SD_init/SD1000/',
-         f'{path_to_old}/DATA/HR/constant_SD_init/SD5000/',
-         f'{path_to_old}/DATA/HR/constant_SD_init/SD10000/',
-         f'{path_to_old}/DATA/HR/constant_SD_init/SD40000/',
-         f'{path_to_old}/DATA/HR/constant_SD_init/SD100000/']
+paths = [f'{master_path}/D/constant_SD_init/SD10/',
+         f'{master_path}/D/constant_SD_init/SD50/',
+         f'{master_path}/D/constant_SD_init/SD100/',
+         f'{master_path}/D/constant_SD_init/SD1000/',
+         f'{master_path}/D/constant_SD_init/SD10000/',
+         f'{master_path}/D/constant_SD_init/SD40000/',
+         f'{master_path}/D/constant_SD_init/SD100000/',
+         f'{master_path}/LR/constant_SD_init/SD10/',
+         f'{master_path}/LR/constant_SD_init/SD50/',
+         f'{master_path}/LR/constant_SD_init/SD100/',
+         f'{master_path}/LR/constant_SD_init/SD1000/',
+         f'{master_path}/LR/constant_SD_init/SD10000/',
+         f'{master_path}/LR/constant_SD_init/SD40000/',
+         f'{master_path}/LR/constant_SD_init/SD100000/',
+         f'{master_path}/MR/constant_SD_init/SD10/',
+         f'{master_path}/MR/constant_SD_init/SD50/',
+         f'{master_path}/MR/constant_SD_init/SD100/',
+         f'{master_path}/MR/constant_SD_init/SD1000/',
+         f'{master_path}/MR/constant_SD_init/SD10000/',
+         f'{master_path}/MR/constant_SD_init/SD40000/',
+         f'{master_path}/MR/constant_SD_init/SD100000/',
+         f'{master_path}/HR/constant_SD_init/SD10/',
+         f'{master_path}/HR/constant_SD_init/SD50/',
+         f'{master_path}/HR/constant_SD_init/SD100/',
+         f'{master_path}/HR/constant_SD_init/SD1000/',
+         f'{master_path}/HR/constant_SD_init/SD5000/',
+         f'{master_path}/HR/constant_SD_init/SD10000/',
+         f'{master_path}/HR/constant_SD_init/SD40000/',
+         f'{master_path}/HR/constant_SD_init/SD100000/']
 
-outfile = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Dane/time_series/precip_data/ALL_old/'
+outfile = ''# provide path to save the data
 outfile_name = 'constant_SD_init'
 prepare_data(paths, outfile_name)

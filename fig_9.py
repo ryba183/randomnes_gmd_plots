@@ -18,7 +18,6 @@ def multiplot_ds_c_data(parent_directories, subfolders, time_moments, names, pat
     """
     # Number of colors you need
     num_colors = len(subfolders)  # You can change this to your desired number
-
     # Create a list of colors from the "gnuplot" colormap
     colors = [plt.cm.gnuplot(i / num_colors) for i in range(num_colors)]
     rows = len(names)
@@ -78,7 +77,7 @@ def multiplot_ds_c_data(parent_directories, subfolders, time_moments, names, pat
     fig.savefig(f"{path}/{name}.pdf", dpi=300)
     plt.close(fig)
 
-path = "/home/piotr-pc/response/to_share/Cumulus_Congestus/DATA"
+path = ""#provide path to DATA folder
 parent_directory = [f"{path}/D/CSV", 
                     f"{path}/LR/CSV",
                     f"{path}/MR/CSV",
@@ -87,6 +86,6 @@ parent_directory = [f"{path}/D/CSV",
 subfolders = ["SD10", "SD50", "SD100", "SD1000", "SD10000", "SD40000", "SD100000"]
 time_moments = [9600]
 abreviations = ["D","LR","MR","HR"]
-outfile_to_plot = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Wykresy/'
+outfile_to_plot = ''#provide path to save the figure
 
 multiplot_ds_c_data(parent_directory, subfolders, [9600], abreviations, outfile_to_plot)

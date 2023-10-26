@@ -22,34 +22,22 @@ plt.rcParams.update({'font.size': 20})
 
 ########################## Fig 11 & 13
 
-path_to_old = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Dane/time_series/precip_data/ALL_old'
-# DATA/Data_for_Fig_10_11_13_14_15/init
-avg_const_SD_init = np.load(f'{path_to_old}/average_constant_SD_init.npy',allow_pickle=True)
-std_const_SD_init = np.load(f'{path_to_old}/STD_constant_SD_init.npy',allow_pickle=True)
-std_err_const_SD_init = np.load(f'{path_to_old}/std_error_constant_SD_init.npy',allow_pickle=True)
-mean_err_const_SD_init = np.load(f'{path_to_old}/mean_error_constant_SD_init.npy',allow_pickle=True)
-std_err_const_SD_init_up = np.load(f'{path_to_old}/std_error_up_constant_SD_init.npy',allow_pickle=True)
-std_err_const_SD_init_down = np.load(f'{path_to_old}/std_error_down_constant_SD_init.npy',allow_pickle=True)
+path = ''#provide path to DATA folder
+avg_const_SD_init = np.load(f'{path}/average_constant_SD_init.npy',allow_pickle=True)
+std_const_SD_init = np.load(f'{path}/STD_constant_SD_init.npy',allow_pickle=True)
+std_err_const_SD_init = np.load(f'{path}/std_error_constant_SD_init.npy',allow_pickle=True)
+mean_err_const_SD_init = np.load(f'{path}/mean_error_constant_SD_init.npy',allow_pickle=True)
+std_err_const_SD_init_up = np.load(f'{path}/std_error_up_constant_SD_init.npy',allow_pickle=True)
+std_err_const_SD_init_down = np.load(f'{path}/std_error_down_constant_SD_init.npy',allow_pickle=True)
 
 ########################## Fig 15
-path_to_old = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Dane/time_series/precip_data/GA17_old'
-# DATA/Data_for_Fig_10_11_13_14_15/mixing
-avg_GA17 = np.load(f'{path_to_old}/average_GA17.npy',allow_pickle=True)
-std_GA17 = np.load(f'{path_to_old}/STD_GA17.npy',allow_pickle=True)
-std_err_GA17 = np.load(f'{path_to_old}/std_error_GA17.npy',allow_pickle=True)
-mean_err_GA17 = np.load(f'{path_to_old}/mean_error_GA17.npy',allow_pickle=True)
-std_err_init_up_GA17 = np.load(f'{path_to_old}/std_error_up_GA17.npy',allow_pickle=True)
-std_err_init_down_GA17 = np.load(f'{path_to_old}/std_error_down_GA17.npy',allow_pickle=True)
-
-########################## UPDATE
-
-main_path = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Dane/time_series'
-avg_distance = np.load(f'{main_path}/All/average_distance.npy',allow_pickle=True)
-std_distance = np.load(f'{main_path}/All/STD_distance.npy',allow_pickle=True)
-std_err_distance = np.load(f'{main_path}/All/std_error_distance.npy',allow_pickle=True)
-mean_err_distance = np.load(f'{main_path}/All/mean_error_distance.npy',allow_pickle=True)
-std_err_init_up_distance = np.load(f'{main_path}/All/std_error_up_distance.npy',allow_pickle=True)
-std_err_init_down_distance = np.load(f'{main_path}/All/std_error_down_distance.npy',allow_pickle=True)
+path = ''#provide path to DATA folder
+avg_GA17 = np.load(f'{path}/average_GA17.npy',allow_pickle=True)
+std_GA17 = np.load(f'{path}/STD_GA17.npy',allow_pickle=True)
+std_err_GA17 = np.load(f'{path}/std_error_GA17.npy',allow_pickle=True)
+mean_err_GA17 = np.load(f'{path}/mean_error_GA17.npy',allow_pickle=True)
+std_err_init_up_GA17 = np.load(f'{path}/std_error_up_GA17.npy',allow_pickle=True)
+std_err_init_down_GA17 = np.load(f'{path}/std_error_down_GA17.npy',allow_pickle=True)
 
 def create_subtitle(fig: plt.Figure, grid: SubplotSpec, title: str):
     "Sign sets of subplots with title"
@@ -82,7 +70,6 @@ for j in range(len(text_for_legend)):
       ax[0,j].errorbar(SD_to_plot_c_compare_HR, avg_GA17[3*7:4*7+1]*100,  color='r',
                      yerr=((mean_err_GA17[3*7:4*7+1])*1.96*100),
                      fmt=".", ms=20,elinewidth=3,alpha=0.6, linestyle=':', capsize=6)
-    #   ax[0,j].set_title(podpisy_c_compare[j])
       ax[0,j].text(0.03, 0.05, subplots_marks[j], fontsize=20,transform=ax[0,j].transAxes)
       ax[1,j].text(0.03, 0.05, subplots_marks[j+N], fontsize=20,transform=ax[1,j].transAxes)
 
@@ -94,9 +81,9 @@ for j in range(len(text_for_legend)):
       ax[1,j].errorbar(SD_to_plot_c_compare_HR, CV,  color='k',  yerr=CV_error*CV, fmt=".",
                     alpha=0.6,elinewidth=3, ms=20, linestyle=':', capsize=6)
 
-      CV_GA17 = (std_const_SD_init[3*7:4*7+1]/avg_GA17[3*7:4*7+1])
+      CV_GA17 = (std_GA17[3*7:4*7+1]/avg_GA17[3*7:4*7+1])
       CV_error_1_GA17 =np.power(mean_err_GA17[3*7:4*7+1]/avg_GA17[3*7:4*7+1],2)
-      CV_error_2_GA17 = np.power(std_err_const_SD_init[3*7:4*7+1]/std_GA17[3*7:4*7+1],2)
+      CV_error_2_GA17 = np.power(std_err_GA17[3*7:4*7+1]/std_GA17[3*7:4*7+1],2)
       CV_error_GA17 = np.sqrt(CV_error_1_GA17 + CV_error_2_GA17)
 
       ax[1,j].errorbar(SD_to_plot_c_compare_HR, CV_GA17,  color='r',  yerr=CV_error_GA17*CV_GA17, fmt=".",
@@ -119,7 +106,7 @@ for j in range(len(text_for_legend)):
       ax[1,j].errorbar(SD_to_plot_c_compare, CV,  color='k',  yerr=CV_error*CV, fmt=".",
                       alpha=0.6,elinewidth=3, ms=20, linestyle=':', capsize=6)
 
-      CV_GA17 = (std_const_SD_init[0+j*7:7+j*7]/avg_GA17[0+j*7:7+j*7])
+      CV_GA17 = (std_GA17[0+j*7:7+j*7]/avg_GA17[0+j*7:7+j*7])
       CV_error_1_GA17 =np.power(mean_err_GA17[0+j*7:7+j*7]/avg_GA17[0+j*7:7+j*7],2)
       CV_error_2_GA17 = np.power(std_err_GA17[0+j*7:7+j*7]/std_GA17[0+j*7:7+j*7],2)
       CV_error_GA17 = np.sqrt(CV_error_1_GA17 + CV_error_2_GA17)
@@ -152,5 +139,5 @@ plt.subplots_adjust(left=0.06,
                 hspace=0.1)
 
 grid = plt.GridSpec(2, 4)
-outfile_to_plot = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Wykresy/'
-plt.savefig(f'{outfile_to_plot}Fig_15_update_befor.pdf')
+outfile_to_plot = ''#provide path to save the figure
+plt.savefig(f'{outfile_to_plot}Fig_15.pdf')

@@ -20,11 +20,10 @@ def read_my_var(file_obj, var_name):
     return arr
 
 #Pick which case you want to run and comment out the rest
-main_path = '/home/piotr-pc/response/to_share/odp_do_odp/Final/Dane/'
-root_path = f'{main_path}/prof/distance_no_ta_no_rx'
+main_path = '' # path to the folder with the data
+subfolder_path = f'{main_path}/prof/...' # path to the subfolder with the data
 
-folders = ['start_4800_outfreq_240_tmax_300_SD10','start_4800_outfreq_240_tmax_300_SD100','start_4800_outfreq_240_tmax_300_SD1000']
-# folders = ['start_4800_outfreq_240_tmax_300', 'start_4800_outfreq_240_tmax_3600']
+folders = ['..._SD10','..._SD100','..._SD1000'] #subsubfolders names
 
 subfolders = ['9600']
 
@@ -41,7 +40,7 @@ rd_lt_08um_conc_list =[]
 # Loop over the folders and subfolders and extract the values
 for folder in folders:
     for subfolder in subfolders:
-        path = os.path.join(root_path, folder, subfolder)
+        path = os.path.join(subfolder_path, folder, subfolder)
         for filename in os.listdir(path):
             if filename.endswith('.dat'):
                with open(os.path.join(path, filename)) as f:
@@ -106,7 +105,7 @@ for folder in folders:
 
         # Save the average values to a csv file
         mean_values = np.column_stack((mean_r_avg, sigma_r_avg, disp_r_avg, actrw_rw_cl_conc_avg, rliq_avg, prflux_avg, rd_geq_08um_conc_avg, rd_lt_08um_conc_avg,position_avg))
-        output_filename = f"{main_path}/CSV/{folder}_{subfolder}_relax.csv"
+        output_filename = f"{main_path}/CSV/{folder}_{subfolder}.csv" # path to the output file
         np.savetxt(output_filename, mean_values, delimiter=",")
 
         # Reset the lists for the next subfolder
