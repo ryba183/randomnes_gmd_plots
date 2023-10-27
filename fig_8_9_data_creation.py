@@ -20,10 +20,20 @@ def read_my_var(file_obj, var_name):
     return arr
 
 #Pick which case you want to run and comment out the rest
+# D
 path = ""#provide path to DATA folder
-subfolder_path = f'{path}/prof/...' # path to the subfolder with the data
+root_path = f'{path}/D/Profiles/'
+folders = ['prflux_prof_D_SD10', 'prflux_prof_D_SD50', 'prflux_prof_D_SD100', 'prflux_prof_D_SD1000', 'prflux_prof_D_SD10000', 'prflux_prof_D_SD40000', 'prflux_prof_D_SD100000']
+# LR
+# root_path = f'{path}/LR/Profiles/'
+# folders = ['prflux_prof_LR_SD10', 'prflux_prof_LR_SD50', 'prflux_prof_LR_SD100', 'prflux_prof_LR_SD1000', 'prflux_prof_LR_SD10000', 'prflux_prof_LR_SD40000', 'prflux_prof_LR_SD100000']
+# # MR
+# root_path = f'{path}/MR/Profiles/'
+# folders = ['prflux_prof_MR_SD10', 'prflux_prof_MR_SD50', 'prflux_prof_MR_SD100', 'prflux_prof_MR_SD1000', 'prflux_prof_MR_SD10000', 'prflux_prof_MR_SD40000', 'prflux_prof_MR_SD100000']
+# # HR
+# root_path = f'{path}/HR/Profiles/'
+# folders = ['prflux_prof_HR_SD10', 'prflux_prof_HR_SD50', 'prflux_prof_HR_SD100', 'prflux_prof_HR_SD1000', 'prflux_prof_HR_SD10000', 'prflux_prof_HR_SD40000', 'prflux_prof_HR_SD100000']
 
-folders = ['..._SD10','..._SD100','..._SD1000'] #subsubfolders names
 
 subfolders = ['9600']
 
@@ -35,16 +45,14 @@ actrw_rw_cl_conc_list = []
 rliq_list = []
 prflux_list = []
 position_list = []
-rd_geq_08um_conc_list = []
-rd_lt_08um_conc_list =[]
+
 # Loop over the folders and subfolders and extract the values
 for folder in folders:
     for subfolder in subfolders:
-        path = os.path.join(subfolder_path, folder, subfolder)
+        path = os.path.join(root_path, folder, subfolder)
         for filename in os.listdir(path):
             if filename.endswith('.dat'):
                with open(os.path.join(path, filename)) as f:
-                    print(f)
                     # Read the values from the file
                     mean_r = read_my_var(f, "mean_r")
                     mean_r[mean_r == 0] = np.nan
@@ -66,14 +74,6 @@ for folder in folders:
                     rliq[rliq == 0] = np.nan
                     rliq_list.append(rliq)
 
-                    rd_geq_08um_conc = read_my_var(f, "rd_geq_0.8um_conc")
-                    rd_geq_08um_conc[rd_geq_08um_conc == 0] = np.nan
-                    rd_geq_08um_conc_list.append(rd_geq_08um_conc)
-
-                    rd_lt_08um_conc = read_my_var(f, "rd_lt_0.8um_conc")
-                    rd_lt_08um_conc[rd_lt_08um_conc == 0] = np.nan
-                    rd_lt_08um_conc_list.append(rd_lt_08um_conc)
-
                     prflux = read_my_var(f, "prflux")
                     prflux[prflux == 0] = np.nan
                     prflux_list.append(prflux)
@@ -88,8 +88,6 @@ for folder in folders:
         actrw_rw_cl_conc_avg = np.nanmean(actrw_rw_cl_conc_list, axis=0)
         rliq_avg = np.nanmean(rliq_list, axis=0)
         prflux_avg = np.nanmean(prflux_list, axis=0)
-        rd_geq_08um_conc_avg = np.nanmean(rd_geq_08um_conc_list, axis=0)
-        rd_lt_08um_conc_avg = np.nanmean(rd_lt_08um_conc_list, axis=0)
         position_avg = np.nanmean(position_list, axis=0)
 
         # Change all nan values to 0 in *_avg arrays
@@ -99,13 +97,11 @@ for folder in folders:
         actrw_rw_cl_conc_avg = np.nan_to_num(actrw_rw_cl_conc_avg)
         rliq_avg = np.nan_to_num(rliq_avg)
         prflux_avg = np.nan_to_num(prflux_avg)
-        rd_geq_08um_conc_avg = np.nan_to_num(rd_geq_08um_conc_avg)
-        rd_lt_08um_conc_avg = np.nan_to_num(rd_lt_08um_conc_avg)
         position_avg = np.nan_to_num(position_avg)
 
         # Save the average values to a csv file
-        mean_values = np.column_stack((mean_r_avg, sigma_r_avg, disp_r_avg, actrw_rw_cl_conc_avg, rliq_avg, prflux_avg, rd_geq_08um_conc_avg, rd_lt_08um_conc_avg,position_avg))
-        output_filename = f"{path}/CSV/{folder}_{subfolder}.csv" # path to the output file
+        mean_values = np.column_stack((mean_r_avg, sigma_r_avg, disp_r_avg, actrw_rw_cl_conc_avg, rliq_avg, prflux_avg, position_avg))
+        output_filename = f"{folder}_{subfolder}_mean_values_2_prflux.csv"
         np.savetxt(output_filename, mean_values, delimiter=",")
 
         # Reset the lists for the next subfolder
@@ -116,5 +112,3 @@ for folder in folders:
         rliq_list = []
         prflux_list = []
         position_list = []
-        rd_geq_08um_conc_list = []
-        rd_lt_08um_conc_list =[]

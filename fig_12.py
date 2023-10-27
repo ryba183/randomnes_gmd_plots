@@ -14,7 +14,7 @@ SDs = [10, 50, 100, 1000, 10000, 40000, 100000]
 # Number of colors you need
 num_colors = len(SDs)  # You can change this to your desired number
 # Create a list of colors from the "gnuplot" colormap
-colors = [plt.cm.gnuplot(i / num_colors) for i in range(num_colors)]
+colors = [plt.cm.cool(i / num_colors) for i in range(num_colors)]
 fig, axes = plt.subplots(1, 4, figsize=(25, 15), sharey=True)
 for k, SD in enumerate(SDs):
     j = 0

@@ -29,7 +29,7 @@ def multiplot_data(parent_directories, subfolders, time_moments, names, outfile)
     num_colors = len(subfolders)  # You can change this to your desired number
 
     # Create a list of colors from the "gnuplot" colormap
-    colors = [plt.cm.gnuplot(i / num_colors) for i in range(num_colors)]
+    colors = [plt.cm.cool(i / num_colors) for i in range(num_colors)]
 
     for col, (p_dir, name) in enumerate(zip(parent_directories, names)):
         text_name = name

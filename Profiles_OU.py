@@ -102,24 +102,26 @@ def multiplot_data(parent_directories, subfolders, subfolders2,time_moments, nam
     axs[1,1].set_xlabel(r"mean radius [$\mu$m]",fontsize=f_size)
     axs[1,2].set_xlabel("relative dispersion [1]",fontsize=f_size)
     axs[1,3].set_xlabel(r"aerosol concentration [cm$^{-3}$]",fontsize=f_size)
-    axs[0,0].legend(loc='upper center', bbox_to_anchor=(2, 1.15), ncol=3, fancybox=False, shadow=False, frameon=False, fontsize=28)
+    axs[0,0].legend(loc='upper center', bbox_to_anchor=(2.1, -1.23), ncol=3, fancybox=False, shadow=False, frameon=False, fontsize=28)
 
     axs[0,0].set_ylabel("height [m]",fontsize=f_size)
     axs[1,0].set_ylabel("height [m]",fontsize=f_size)
-    axs[0, 0].text(-0.25, 0.62, "HR", transform=axs[0, 0].transAxes, fontsize=25, fontweight='bold', va='center', ha='center')
-    axs[1, 0].text(-0.25, 0.62, "D", transform=axs[1, 0].transAxes, fontsize=25, fontweight='bold', va='center', ha='center')
-
-    plt.subplots_adjust(top=0.95)  # Adjust the top spacing to make room for the title
+    # Add titles spanning two subplots
+    fig = axs[0, 1].get_figure()  # Get the figure from one of the subplots
+    figtext_HR = (axs[0, 1].get_position().x0 + axs[0, 2].get_position().x1) / 2  # Calculate x-coordinate
+    figtext_D = (axs[1, 1].get_position().x0 + axs[1, 2].get_position().x1) / 2  # Calculate x-coordinate
+    fig.text(figtext_HR, 0.95, 'HR', ha='center',fontsize=26, fontweight='bold')  # Add 'HR' title
+    fig.text(figtext_D, 0.5, 'D', ha='center',fontsize=26, fontweight='bold')  # Add 'D' title
     plt.subplots_adjust(left=0.08,
-                bottom=0.05,
+                bottom=0.1,
                 right=0.98,
                 top=0.92,
                 wspace=0.1,
-                hspace=0.07)
-    fig.savefig(outfile + 'Profiles_OU.pdf', dpi=300)
+                hspace=0.15)
+    fig.savefig(outfile + 'Profiles_relax.pdf', dpi=300)
     plt.close(fig)
-main_path = ''#provide path to DATA folder
-parent_directory = [f'{main_path}/CSV/']
+path = ""#provide path to DATA folder
+parent_directory = [f'{path}/CSV/']
 
 subfolders = ['HR/HR/SD10','HR/GA17_HR/SD10','HR/HR/SD100','HR/GA17_HR/SD100','HR/HR/SD1000','HR/GA17_HR/SD1000']
 subfolders2 = ['D/D/SD10','D/GA17_D/SD10','D/D/SD100','D/GA17_D/SD100','D/D/SD1000','D/GA17_D/SD1000']

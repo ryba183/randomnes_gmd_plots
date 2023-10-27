@@ -20,34 +20,25 @@ import pandas as pd
 from matplotlib.gridspec import SubplotSpec
 plt.rcParams.update({'font.size': 20})
 
-########################## Fig 11 & 13
-
-path = ''#provide path to DATA folder
-avg_const_SD_init = np.load(f'{path}/average_constant_SD_init.npy',allow_pickle=True)
-std_const_SD_init = np.load(f'{path}/STD_constant_SD_init.npy',allow_pickle=True)
-std_err_const_SD_init = np.load(f'{path}/std_error_constant_SD_init.npy',allow_pickle=True)
-mean_err_const_SD_init = np.load(f'{path}/mean_error_constant_SD_init.npy',allow_pickle=True)
-std_err_const_SD_init_up = np.load(f'{path}/std_error_up_constant_SD_init.npy',allow_pickle=True)
-std_err_const_SD_init_down = np.load(f'{path}/std_error_down_constant_SD_init.npy',allow_pickle=True)
-
 ########################## Fig 15
-path = ''#provide path to DATA folder
-avg_GA17 = np.load(f'{path}/average_GA17.npy',allow_pickle=True)
-std_GA17 = np.load(f'{path}/STD_GA17.npy',allow_pickle=True)
-std_err_GA17 = np.load(f'{path}/std_error_GA17.npy',allow_pickle=True)
-mean_err_GA17 = np.load(f'{path}/mean_error_GA17.npy',allow_pickle=True)
-std_err_init_up_GA17 = np.load(f'{path}/std_error_up_GA17.npy',allow_pickle=True)
-std_err_init_down_GA17 = np.load(f'{path}/std_error_down_GA17.npy',allow_pickle=True)
-
-########################## UPDATE
 
 path = ''#provide path to DATA folder
-avg_distance = np.load(f'{path}/All/average_distance.npy',allow_pickle=True)
-std_distance = np.load(f'{path}/All/STD_distance.npy',allow_pickle=True)
-std_err_distance = np.load(f'{path}/All/std_error_distance.npy',allow_pickle=True)
-mean_err_distance = np.load(f'{path}/All/mean_error_distance.npy',allow_pickle=True)
-std_err_init_up_distance = np.load(f'{path}/All/std_error_up_distance.npy',allow_pickle=True)
-std_err_init_down_distance = np.load(f'{path}/All/std_error_down_distance.npy',allow_pickle=True)
+avg_const_SD_init = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/init/Fig_15/average_constant_SD_init.npy',allow_pickle=True)
+std_const_SD_init = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/init/Fig_15/STD_constant_SD_init.npy',allow_pickle=True)
+std_err_const_SD_init = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/init/Fig_15/std_error_constant_SD_init.npy',allow_pickle=True)
+mean_err_const_SD_init = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/init/Fig_15/mean_error_constant_SD_init.npy',allow_pickle=True)
+std_err_const_SD_init_up = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/init/Fig_15/std_error_up_constant_SD_init.npy',allow_pickle=True)
+std_err_const_SD_init_down = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/init/Fig_15/std_error_down_constant_SD_init.npy',allow_pickle=True)
+
+########################## Fig 15 OU
+
+path = ''#provide path to DATA folder
+avg_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/average_OU.npy',allow_pickle=True)
+std_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/STD_OU.npy',allow_pickle=True)
+std_err_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_OU.npy',allow_pickle=True)
+mean_err_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/mean_error_OU.npy',allow_pickle=True)
+std_err_init_up_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_up_OU.npy',allow_pickle=True)
+std_err_init_down_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_down_OU.npy',allow_pickle=True)
 
 def create_subtitle(fig: plt.Figure, grid: SubplotSpec, title: str):
     "Sign sets of subplots with title"

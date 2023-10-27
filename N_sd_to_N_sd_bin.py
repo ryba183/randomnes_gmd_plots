@@ -9,7 +9,7 @@ time_start = [1800]
 level_start = 500
 level_end = 5000
 outfile_to_plot = ''#provide path to save the figure
-main_path = ''#provide path to DATA folder
+path = ''#provide path to DATA folder
 text_letters = ['(a)', '(b)', '(c)', '(d)', '(e)', '(f)', '(g)', '(h)', '(i)', '(j)', '(k)', '(l)', '(m)', '(n)', '(o)','(p)','(r)', '(s)']
 linestyle = ['-', '--', '-', '--','-', '--', '-', '--']
 SDs_HR = ['HR_SD10', 'GA17_HR_SD10','HR_SD100', 'GA17_HR_SD100','HR_SD1000', 'GA17_HR_SD1000', ]
@@ -23,8 +23,8 @@ colors = ['blue', 'blue', 'red', 'red', 'black', 'black', 'magenta', 'yellow']
 colors2 = ['blue', 'red', 'black']
 
 for i, (SD_D, SD_HR) in enumerate(zip(SDs_D, SDs_HR)):
-    path_D = f'{main_path}/histo/{SD_D}'
-    path_HR = f'{main_path}/histo/{SD_HR}'
+    path_D = f'{path}/histo/{SD_D}'
+    path_HR = f'{path}/histo/{SD_HR}'
     sd = SD_D.split('SD')[-1]
     time_sr = time_start[0]
     time_st = time_stop[0]
