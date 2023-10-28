@@ -33,12 +33,12 @@ std_err_const_SD_init_down = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/init/F
 ########################## Fig 15 OU
 
 path = ''#provide path to DATA folder
-avg_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/average_OU.npy',allow_pickle=True)
-std_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/STD_OU.npy',allow_pickle=True)
-std_err_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_OU.npy',allow_pickle=True)
-mean_err_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/mean_error_OU.npy',allow_pickle=True)
-std_err_init_up_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_up_OU.npy',allow_pickle=True)
-std_err_init_down_distance = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_down_OU.npy',allow_pickle=True)
+avg_OU = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/average_OU.npy',allow_pickle=True)
+std_OU = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/STD_OU.npy',allow_pickle=True)
+std_err_OU = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_OU.npy',allow_pickle=True)
+mean_err_OU = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/mean_error_OU.npy',allow_pickle=True)
+std_err_init_up_OU = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_up_OU.npy',allow_pickle=True)
+std_err_init_down_OU = np.load(f'{path}/Data_for_Fig_10_11_13_14_15/mixing/std_error_down_OU.npy',allow_pickle=True)
 
 def create_subtitle(fig: plt.Figure, grid: SubplotSpec, title: str):
     "Sign sets of subplots with title"
@@ -52,7 +52,7 @@ def create_subtitle(fig: plt.Figure, grid: SubplotSpec, title: str):
 #Comparision between mixing and no mixing simulations  - Fig_15
 
 SD_to_plot_c_compare = [10, 50, 100, 1000, 10000, 40000, 100000]
-SD_to_plot_distance = [10, 100, 1000]
+SD_to_plot_OU = [10, 100, 1000]
 SD_to_plot_c_compare_HR = [10, 50, 100, 1000, 5000, 10000, 40000, 100000]
 text_for_legend = ['D','HR']
 subplots_marks = {0:'(a)', 1:'(b)', 2:'(c)', 3:'(d)', 4:'(e)', 5:'(f)', 6:'(g)', 7:'(h)'}
@@ -65,12 +65,11 @@ fig.set_size_inches(19.5, 15.0)
 
 for j in range(len(text_for_legend)):
     if j == 1:
-      print('HR',avg_distance[3:])
       ax[0,j].errorbar(SD_to_plot_c_compare_HR, avg_const_SD_init[3*7:4*7+1]*100,  color='k',
                      yerr=((mean_err_const_SD_init[3*7:4*7+1])*1.96*100),
                      fmt=".", ms=20,elinewidth=3,alpha=0.6, linestyle=':', capsize=6)
-      ax[0,j].errorbar(SD_to_plot_distance, avg_distance[3:]*100,  color='r',
-                     yerr=((mean_err_distance[3:])*1.96*100),
+      ax[0,j].errorbar(SD_to_plot_OU, avg_OU[3:]*100,  color='r',
+                     yerr=((mean_err_OU[3:])*1.96*100),
                      fmt=".", ms=20,elinewidth=3,alpha=0.6, linestyle=':', capsize=6)
       ax[0,j].text(0.03, 0.05, subplots_marks[j], fontsize=20,transform=ax[0,j].transAxes)
       ax[1,j].text(0.03, 0.05, subplots_marks[j+N], fontsize=20,transform=ax[1,j].transAxes)
@@ -83,22 +82,22 @@ for j in range(len(text_for_legend)):
       ax[1,j].errorbar(SD_to_plot_c_compare_HR, CV,  color='k',  yerr=CV_error*CV, fmt=".",
                     alpha=0.6,elinewidth=3, ms=20, linestyle=':', capsize=6)
 
-      CV_distance = (std_distance[3:]/avg_distance[3:])
-      CV_error_1_distance =np.power(mean_err_distance[3:]/avg_distance[3:],2)
-      CV_error_2_distance = np.power(std_err_distance[3:]/std_distance[3:],2)
-      CV_error_distance = np.sqrt(CV_error_1_distance + CV_error_2_distance)
+      CV_OU = (std_OU[3:]/avg_OU[3:])
+      CV_error_1_OU =np.power(mean_err_OU[3:]/avg_OU[3:],2)
+      CV_error_2_OU = np.power(std_err_OU[3:]/std_OU[3:],2)
+      CV_error_OU = np.sqrt(CV_error_1_OU + CV_error_2_OU)
 
-      ax[1,j].errorbar(SD_to_plot_distance, CV_distance,  color='r',  yerr=CV_error_distance*CV_distance, fmt=".",
+      ax[1,j].errorbar(SD_to_plot_OU, CV_OU,  color='r',  yerr=CV_error_OU*CV_OU, fmt=".",
                     alpha=0.6,elinewidth=3, ms=20, linestyle=':', capsize=6)
       ax[0,j].set_title(text_for_legend[j])
 
     else:
-      print(avg_distance[:3])
+      print(avg_OU[:3])
       ax[0,j].errorbar(SD_to_plot_c_compare, avg_const_SD_init[0+j*7:7+j*7]*100,  color='k',
                      yerr=((mean_err_const_SD_init[0+j*7:7+j*7])*1.96*100),
                      fmt=".", ms=20,elinewidth=3,alpha=0.6, linestyle=':', capsize=6)
-      ax[0,j].errorbar(SD_to_plot_distance, avg_distance[:3]*100,  color='r',
-                     yerr=((mean_err_distance[:3])*1.96*100),
+      ax[0,j].errorbar(SD_to_plot_OU, avg_OU[:3]*100,  color='r',
+                     yerr=((mean_err_OU[:3])*1.96*100),
                      fmt=".", ms=20,elinewidth=3,alpha=0.6, linestyle=':', capsize=6)      
 
       CV = (std_const_SD_init[0+j*7:7+j*7]/avg_const_SD_init[0+j*7:7+j*7])
@@ -109,12 +108,12 @@ for j in range(len(text_for_legend)):
       ax[1,j].errorbar(SD_to_plot_c_compare, CV,  color='k',  yerr=CV_error*CV, fmt=".",
                       alpha=0.6,elinewidth=3, ms=20, linestyle=':', capsize=6)
 
-      CV_distance = (std_distance[:3]/avg_distance[:3])
-      CV_error_1_distance =np.power(mean_err_distance[:3]/avg_distance[:3],2)
-      CV_error_2_distance = np.power(std_err_distance[:3]/std_distance[:3],2)
-      CV_error_distance = np.sqrt(CV_error_1_distance + CV_error_2_distance)
+      CV_OU = (std_OU[:3]/avg_OU[:3])
+      CV_error_1_OU =np.power(mean_err_OU[:3]/avg_OU[:3],2)
+      CV_error_2_OU = np.power(std_err_OU[:3]/std_OU[:3],2)
+      CV_error_OU = np.sqrt(CV_error_1_OU + CV_error_2_OU)
 
-      ax[1,j].errorbar(SD_to_plot_distance, CV_distance,  color='r',  yerr=CV_error_distance*CV_distance, fmt=".",
+      ax[1,j].errorbar(SD_to_plot_OU, CV_OU,  color='r',  yerr=CV_error_OU*CV_OU, fmt=".",
                       alpha=0.6,elinewidth=3, ms=20, linestyle=':', capsize=6)
 
       ax[0,j].text(0.03, 0.05, subplots_marks[j], fontsize=20,transform=ax[0,j].transAxes)

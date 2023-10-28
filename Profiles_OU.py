@@ -110,8 +110,8 @@ def multiplot_data(parent_directories, subfolders, subfolders2,time_moments, nam
     fig = axs[0, 1].get_figure()  # Get the figure from one of the subplots
     figtext_HR = (axs[0, 1].get_position().x0 + axs[0, 2].get_position().x1) / 2  # Calculate x-coordinate
     figtext_D = (axs[1, 1].get_position().x0 + axs[1, 2].get_position().x1) / 2  # Calculate x-coordinate
-    fig.text(figtext_HR, 0.95, 'HR', ha='center',fontsize=26, fontweight='bold')  # Add 'HR' title
-    fig.text(figtext_D, 0.5, 'D', ha='center',fontsize=26, fontweight='bold')  # Add 'D' title
+    fig.text(figtext_HR*1.05, 0.95, 'HR', ha='center',fontsize=26, fontweight='bold')  # Add 'HR' title
+    fig.text(figtext_D*1.05, 0.5, 'D', ha='center',fontsize=26, fontweight='bold')  # Add 'D' title
     plt.subplots_adjust(left=0.08,
                 bottom=0.1,
                 right=0.98,
@@ -123,8 +123,8 @@ def multiplot_data(parent_directories, subfolders, subfolders2,time_moments, nam
 path = ""#provide path to DATA folder
 parent_directory = [f'{path}/CSV/']
 
-subfolders = ['HR/HR/SD10','HR/GA17_HR/SD10','HR/HR/SD100','HR/GA17_HR/SD100','HR/HR/SD1000','HR/GA17_HR/SD1000']
-subfolders2 = ['D/D/SD10','D/GA17_D/SD10','D/D/SD100','D/GA17_D/SD100','D/D/SD1000','D/GA17_D/SD1000']
+subfolders = ['HR/HR/SD10','HR/OU_HR/SD10','HR/HR/SD100','HR/OU_HR/SD100','HR/HR/SD1000','HR/OU_HR/SD1000']
+subfolders2 = ['D/D/SD10','D/OU_D/SD10','D/D/SD100','D/OU_D/SD100','D/D/SD1000','D/OU_D/SD1000']
 abreviations = ["10", "100", "1000"]
 time_moments = [9600]
 outfile_to_plot = ''#provide path to save the figure

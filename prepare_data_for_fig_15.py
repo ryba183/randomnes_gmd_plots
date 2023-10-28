@@ -97,7 +97,7 @@ paths = [f'{path}/D_ta/time_series/SD10/',
         f'{path}/HR_ta/time_series/SD40000/',
         f'{path}/HR_ta/time_series/SD100000/']
 outfile = ''# provide path to save the data
-outfile_name = 'GA17'
+outfile_name = 'GA17'#old
 # prepare_data(paths, outfile_name)
 
 paths = [f'{path}/D/constant_SD_init/SD10/',

@@ -12,8 +12,8 @@ outfile_to_plot = ''#provide path to save the figure
 path = ''#provide path to DATA folder
 text_letters = ['(a)', '(b)', '(c)', '(d)', '(e)', '(f)', '(g)', '(h)', '(i)', '(j)', '(k)', '(l)', '(m)', '(n)', '(o)','(p)','(r)', '(s)']
 linestyle = ['-', '--', '-', '--','-', '--', '-', '--']
-SDs_HR = ['HR_SD10', 'GA17_HR_SD10','HR_SD100', 'GA17_HR_SD100','HR_SD1000', 'GA17_HR_SD1000', ]
-SDs_D = ['D_SD10', 'GA17_D_SD10','D_SD100', 'GA17_D_SD100','D_SD1000', 'GA17_D_SD1000', ]
+SDs_HR = ['HR_SD10', 'OU_HR_SD10','HR_SD100', 'OU_HR_SD100','HR_SD1000', 'OU_HR_SD1000', ]
+SDs_D = ['D_SD10', 'OU_D_SD10','D_SD100', 'OU_D_SD100','D_SD1000', 'OU_D_SD1000', ]
 labels = ["10", "100", "1000"]
 f = plt.figure(figsize=(25, 15))
 ax = f.add_subplot(121)

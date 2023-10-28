@@ -243,12 +243,12 @@ outfile = f'{outfile_to_plot}/init/Fig_15/'
 outfile_name = 'constant_SD_init'
 prepare_data(paths, outfile_name)
 
-paths = [f'{path}/D/distance_D/start_4800_outfreq_240_tmax_300_SD10',
-         f'{path}/D/distance_D/start_4800_outfreq_240_tmax_300_SD100',
-         f'{path}/D/distance_D/start_4800_outfreq_240_tmax_300_SD1000',
-         f'{path}/HR/distance/start_4800_outfreq_240_tmax_300_SD10',
-         f'{path}/HR/distance/start_4800_outfreq_240_tmax_300_SD100',
-         f'{path}/HR/distance/start_4800_outfreq_240_tmax_300_SD1000']
+paths = [f'{path}/D/OU/start_4800_outfreq_240_tmax_300_SD10',
+         f'{path}/D/OU/start_4800_outfreq_240_tmax_300_SD100',
+         f'{path}/D/OU/start_4800_outfreq_240_tmax_300_SD1000',
+         f'{path}/HR/OU/start_4800_outfreq_240_tmax_300_SD10',
+         f'{path}/HR/OU/start_4800_outfreq_240_tmax_300_SD100',
+         f'{path}/HR/OU/start_4800_outfreq_240_tmax_300_SD1000']
 outfile = f'{outfile_to_plot}/mixing/'
 outfile_name = 'OU'
 prepare_data(paths, outfile_name)
