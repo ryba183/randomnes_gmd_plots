@@ -18,8 +18,11 @@ def multiplot_ds_c_data(parent_directories, subfolders, time_moments, names, pat
     """
     # Number of colors you need
     num_colors = len(subfolders)  # You can change this to your desired number
-    # Create a list of colors from the "gnuplot" colormap
-    colors = [plt.cm.cool(i / num_colors) for i in range(num_colors)]
+    # Create a list of colors from the "cooper" colormap
+    SDs = [10, 50, 100, 1000, 10000, 40000, 100000]
+    cmap = plt.cm.copper
+    colors = [cmap(np.log10(SDs[i]) / np.log10(SDs[-1])) for i in range(num_colors)]
+    colors = colors[::-1]
     rows = len(names)
     #create subplots with as many subplot to plot mean_r, sigma_r, disp_r, actrw_rw_cl_conc, rliq separately and to have rows equal to the number of names
     fig, axs = plt.subplots(1, rows, figsize=(25, 15), sharey=True)

@@ -13,8 +13,11 @@ text_letters = ['(a)', '(b)', '(c)', '(d)', '(e)', '(f)', '(g)', '(h)', '(i)', '
 SDs = [10, 50, 100, 1000, 10000, 40000, 100000]
 # Number of colors you need
 num_colors = len(SDs)  # You can change this to your desired number
-# Create a list of colors from the "gnuplot" colormap
-colors = [plt.cm.cool(i / num_colors) for i in range(num_colors)]
+# Create a list of colors from the "cooper" colormap
+cmap = plt.cm.copper
+colors = [cmap(np.log10(SDs[i]) / np.log10(SDs[-1])) for i in range(num_colors)]
+colors = colors[::-1]
+
 fig, axes = plt.subplots(1, 4, figsize=(25, 15), sharey=True)
 for k, SD in enumerate(SDs):
     j = 0

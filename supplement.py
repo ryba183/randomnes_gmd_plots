@@ -51,10 +51,12 @@ def multiplot_cases(name, paths, label, outfile, sd, cth, cc, cwp, rwp, prec):
         files[p] = glob.glob("*.dat")
     fig = plt.figure()
     fig.set_size_inches(18.5, 10.5)
-    # Number of colors you need
-    num_colors = 8 # You can change this to your desired number
-    # Create a list of colors from the "gnuplot" colormap
-    colors = [plt.cm.cool(i / num_colors) for i in range(num_colors)]
+    # Create a list of colors from the "copper" colormap
+    SDs = [10, 50, 100, 1000, 10000, 40000, 100000]
+    num_colors = len(SDs) # You can change this to your desired number
+    cmap = plt.cm.copper
+    colors = [cmap(np.log10(SDs[i]) / np.log10(SDs[-1])) for i in range(num_colors)]
+    colors = colors[::-1]
 
     fig.set_size_inches(14.5, 20.5)
     axis1 = plt.subplot(511)
@@ -161,9 +163,12 @@ def multiplot_cases_no_coal_no_rwp(name, paths, label, outfile, sd, cth, cc, cwp
 
     fig = plt.figure()
     fig.set_size_inches(18.5, 10.5)
-    num_colors = 8 # You can change this to your desired number
-    # Create a list of colors from the "gnuplot" colormap
-    colors = [plt.cm.cool(i / num_colors) for i in range(num_colors)]
+    # Create a list of colors from the "copper" colormap
+    SDs = [10, 50, 100, 1000, 10000, 40000]
+    num_colors = len(SDs) # You can change this to your desired number
+    cmap = plt.cm.copper
+    colors = [cmap(np.log10(SDs[i]) / np.log10(SDs[-1])) for i in range(num_colors)]
+    colors = colors[::-1]
 
     fig.set_size_inches(14.5, 20.5)
     axis1 = plt.subplot(311)
